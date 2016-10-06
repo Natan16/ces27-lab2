@@ -190,9 +190,14 @@ func aggregateVotes(votes []*vote) (result string) {
 		log.Printf("[COORDINATOR] Vote: %v\n", vote.value)
 	}
 
-	/////////////////////////
-	// YOUR CODE GOES HERE //
-	/////////////////////////
-	result = votes[0].value
+	curStamp := 0
+	//result recebe o valor do maior timestamp encontrado
+	for _, vote := range votes {
+		if vote.timestamp > curStamp  {
+			curStamp = vote.timestamp
+			result = vote.value
+		}
+	}
+
 	return
 }
